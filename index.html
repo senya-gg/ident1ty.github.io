@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アイデンティティ - индивидульная одежда </title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #000000;
+        }
+
+        .hero {
+            background: url('fon.jpg') no-repeat center center;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #838cdd;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .btn:hover {
+            background: #838cdd;
+            transform: scale(1.05);
+        }
+
+        .categories {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .categories h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+            transition: transform 0.3s;
+        }
+
+        .category-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .category-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-label {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .featured {
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+
+        .featured h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            color: #000000;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #000000;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 20px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        .language-selector {
+            margin-left: 20px;
+        }
+
+        .language-selector select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video-section {
+            padding: 50px 0;
+            text-align: center;
+            background: white;
+        }
+
+        .video-container {
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        
+      .counter {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #838cdd, #ff6b6b, #838cdd);
+            animation: rainbow 5s linear infinite;
+            background-size: 200% auto;
+        }
+
+        .counter-container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .counter-title {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .counter-number {
+            font-size: 64px;
+            font-weight: bold;
+            margin: 10px 0;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Arial', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .counter-number.updated {
+            transform: scale(1.1);
+            color: #4CAF50;
+        }
+
+        .counter-subtitle {
+            font-size: 16px;
+            color: #aaa;
+            margin: 0 auto 20px;
+        }
+
+        .counter-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #838cdd;
+        }
+
+        .counter-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #838cdd, transparent);
+            margin: 20px auto;
+        }
+
+        .feedback-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feedback-btn {
+            padding: 10px 25px;
+            border-radius: 30px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .like-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .like-btn:hover {
+            background-color: #3e8e41;
+            transform: translateY(-2px);
+        }
+
+        .dislike-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .dislike-btn:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        .feedback-message {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #aaa;
+            height: 20px;
+        }
+
+        @keyframes rainbow {
+            0% {background-position: 0% 50%}
+            50% {background-position: 100% 50%}
+            100% {background-position: 0% 50%}
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            .counter-number {
+                font-size: 48px;
+            }
+            
+            .feedback-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">アイデンティティ</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li class="language-selector">
+                        <select onchange="location = this.value;">
+                            <option value="index.html">Русский</option>
+                            <option value="en/index.html">English</option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Новая коллекция 2025</h1>
+            <p>Откройте для себя мир необычной одежды</p>
+            <a href="catalog.html" class="btn">Смотреть</a>
+        </div>
+    </section>
+
+    <section class="counter">
+        <div class="container counter-container">
+            <div class="counter-icon">👥</div>
+            <p class="counter-title">Нас уже выбирают</p>
+            <div class="counter-divider"></div>
+            <div class="counter-number" id="customerCounter">0</div>
+            
+            <div class="feedback-section">
+                <p>Вам нравится наш сайт?</p>
+                <div class="feedback-buttons">
+                    <button class="feedback-btn like-btn" id="likeBtn">
+                        <span>👍</span> Да
+                    </button>
+                    <button class="feedback-btn dislike-btn" id="dislikeBtn">
+                        <span>👎</span> Нет
+                    </button>
+                </div>
+                <div class="feedback-message" id="feedbackMessage"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <h2>Категории</h2>
+            <div class="category-grid">
+                <div class="category-item">
+                    <a href="women.html">
+                        <img src="skirt.jpg" alt="Женская одежда">
+                        <div class="category-label">Женщинам</div>
+                    </a>
+                </div>
+                <div class="category-item">
+                    <a href="men.html">
+                        <img src="pants.jpg" alt="Мужская одежда">
+                        <div class="category-label">Мужчинам</div>
+                    </a>
+                </div>
+                <div class="category-item">
+                    <a href="accessories.html">
+                        <img src="5431352451124032763.jpg" alt="Аксессуары">
+                        <div class="category-label">Аксессуары</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured">
+        <div class="container">
+            <h2>Популярные товары</h2>
+            <div class="products">
+                <div class="product-card">
+                    <div class="product-img">
+                        <a href="product1.html">
+                            <img src="zip.jpg" alt="zip-худи">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">zip-худи /mezu</div>
+                        <div class="product-price">190 byn</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <a href="product2.html">
+                            <img src="skirt.jpg" alt="Юбка">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Юбка /gozu v2</div>
+                        <div class="product-price">100 byn</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <a href="product3.html">
+                            <img src="shirt.jpg" alt="T-shirt">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">T-shirt /mezu</div>
+                        <div class="product-price">110 byn</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <a href="product4.html">
+                            <img src="pants.jpg" alt="Брюки">
+                        </a>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Брюки jiangshi</div>
+                        <div class="product-price">160 byn</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="container">
+            <h2>Наш новый показ</h2>
+            <div class="video-container">
+                <iframe width="610" height="365" src="https://www.youtube.com/embed/ekGsDcZeNAA?si=SbT1_MJ28jH2cdPt" title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <h2>Подпишитесь на рассылку</h2>
+            <p>Получайте эксклюзивные предложения и первыми узнавайте о новинках</p>
+            <form action="/subscribe" method="post">
+                <input type="email" name="email" placeholder="Ваш email" required>
+                <button type="submit" class="btn">Подписаться</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Магазин</h3>
+                    <ul>
+                        <li><a href="women.html">Женщинам</a></li>
+                        <li><a href="men.html">Мужчинам</a></li>
+                        <li><a href="accessories.html">Аксессуары</a></li>
+                   
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="blog.html"> </a></li>
+                        <li><a href="delivery.html">Доставка и оплата</a></li>
+                        <li><a href="return.html">Возврат и обмен</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                 
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <p>г. Минск, ул. Петруся Бровки 12</p>
+                    <p>+375 44 568 3271</p>
+                    <p>info@identity.ru</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 アイデンティティ. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // Загружаем сохраненные значения из localStorage
+    let customerCount = parseInt(localStorage.getItem('customerCount')) || 0;
+    let hasVoted = localStorage.getItem('hasVoted') === 'true';
+    
+    // Элементы DOM
+    const counterElement = document.getElementById('customerCounter');
+    const likeBtn = document.getElementById('likeBtn');
+    const dislikeBtn = document.getElementById('dislikeBtn');
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    
+    // Анимация счетчика
+    function animateCounter(elementId, targetNumber, duration) {
+        const element = document.getElementById(elementId);
+        const startTime = performance.now();
+        const startNumber = parseInt(element.textContent.replace(/\D/g, '')) || 0;
+        
+        const easeOutQuad = function(t) {
+            return t * (2 - t);
+        };
+
+        const updateCounter = (currentTime) => {
+            const elapsedTime = currentTime - startTime;
+            const progress = Math.min(elapsedTime / duration, 1);
+            const easedProgress = easeOutQuad(progress);
+            const currentNumber = Math.floor(startNumber + easedProgress * (targetNumber - startNumber));
+            
+            element.textContent = currentNumber.toLocaleString();
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.textContent = targetNumber.toLocaleString();
+            }
+        };
+
+        requestAnimationFrame(updateCounter);
+    }
+    
+    // Обновление счетчика с анимацией
+    function updateCounter() {
+        counterElement.classList.add('pulse');
+        setTimeout(() => {
+            counterElement.classList.remove('pulse');
+        }, 500);
+        
+        animateCounter("customerCounter", customerCount, 800);
+    }
+    
+    // Обработчики кнопок
+    likeBtn.addEventListener('click', () => {
+        if (hasVoted) {
+            feedbackMessage.textContent = "Вы уже оценили наш сайт. Спасибо!";
+            return;
+        }
+        
+        customerCount += 1;
+        localStorage.setItem('customerCount', customerCount.toString());
+        updateCounter();
+        feedbackMessage.textContent = "Спасибо за вашу оценку!";
+        hasVoted = true;
+        localStorage.setItem('hasVoted', 'true');
+        
+        // Здесь можно отправить данные на сервер
+        // sendFeedbackToServer(true);
+    });
+    
+    dislikeBtn.addEventListener('click', () => {
+        if (hasVoted) {
+            feedbackMessage.textContent = "Вы уже оценили наш сайт. Спасибо!";
+            return;
+        }
+        
+        feedbackMessage.textContent = "Спасибо за отзыв! Мы постараемся стать лучше.";
+        hasVoted = true;
+        localStorage.setItem('hasVoted', 'true');
+        
+        // Здесь можно отправить данные на сервер
+        // sendFeedbackToServer(false);
+    });
+    
+    // Проверяем, голосовал ли уже пользователь
+    if (hasVoted) {
+        feedbackMessage.textContent = "Спасибо, что оценили наш сайт!";
+    }
+
+    // Инициализация счетчика при загрузке страницы
+    window.onload = function () {
+        // Устанавливаем текущее значение счетчика без анимации
+        counterElement.textContent = customerCount.toLocaleString();
+        
+        // Можно добавить небольшую анимацию при загрузке
+        setTimeout(() => {
+            counterElement.classList.add('pulse');
+            setTimeout(() => {
+                counterElement.classList.remove('pulse');
+            }, 500);
+        }, 1000);
+    };
+</script>
+  
+</body>
+
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мужская коллекция - アイデンティティ</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Шапка */
+        header {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #000000;
+        }
+
+        /* Хлебные крошки */
+        .breadcrumbs {
+            padding: 15px 0;
+            font-size: 14px;
+        }
+
+        .breadcrumbs a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumbs a:hover {
+            color: #838cdd;
+        }
+
+        /* Герой-секция */
+        .men-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('men-bg.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .men-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* Сетка товаров */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 50px 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #838cdd;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .product-badge.sale {
+            background: #ff6b6b;
+        }
+
+        .product-badge.new {
+            background: #4CAF50;
+        }
+
+        .product-badge.hot {
+            background: #ffa502;
+        }
+
+        .product-img {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .product-price {
+            color: #000000;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .add-to-cart {
+            background: #838cdd;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .add-to-cart:hover {
+            background: #727bc7;
+            transform: translateY(-2px);
+        }
+
+        .wishlist {
+            background: none;
+            border: 1px solid #ddd;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #ccc;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wishlist:hover {
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        .wishlist.active {
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        /* Подвал */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #838cdd;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 20px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .men-hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">アイデンティティ</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="women.html">Женщинам</a></li>
+                    <li><a href="men.html" class="active">Мужчинам</a></li>
+                    <li><a href="accessories.html">Аксессуары</a></li>
+                    <li><a href="new.html">Новинки</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> / <span>Мужчинам</span>
+        </div>
+    </div>
+
+    <section class="men-hero">
+        <div class="container">
+            <h1>Мужская коллекция</h1>
+            <p>Стиль и комфорт для уверенных в себе</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="products">
+            <!-- Товар 1 -->
+            <div class="product-card">
+                <div class="product-badge new">Новинка</div>
+                <div class="product-img">
+                    <img src="pants.jpg" alt="Брюки jiangshi">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Брюки jiangshi</div>
+                    <div class="product-price">160 BYN <span class="old-price">200 BYN</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="wishlist">♥</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Товар 2 -->
+            <div class="product-card">
+                <div class="product-badge new">Новинка</div>
+                <div class="product-img">
+                    <img src="b378ca5f-f08c-4819-b943-b85a95fe7d40.jpg" alt="Брюки ≈guardian≈">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Брюки ≈guardian≈</div>
+                    <div class="product-price">150 BYN</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="wishlist">♥</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Товар 3 -->
+            <div class="product-card">
+                <div class="product-badge hot">Хит</div>
+                <div class="product-img">
+                    <img src="shirt.jpg" alt="T-shirt /mezu">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">T-shirt /mezu</div>
+                    <div class="product-price">110 BYN</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="wishlist">♥</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Товар 4 -->
+            <div class="product-card">
+                <div class="product-badge sale">Распродажа</div>
+                <div class="product-img">
+                    <img src="zip.jpg" alt="zip-худи /mezu">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">zip-худи /mezu</div>
+                    <div class="product-price">190 BYN</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="wishlist">♥</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Товар 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="ffdf8836-4db3-469d-b104-95a6bc182be4.jpg" alt="Zip-худи ≈heaven≈">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Zip-худи ≈heaven≈</div>
+                    <div class="product-price">240 BYN</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="wishlist">♥</button>
+                    </div>
+                </div>
+            </div>
+            
+           
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Магазин</h3>
+                    <ul>
+                        <li><a href="women.html">Женщинам</a></li>
+                        <li><a href="men.html">Мужчинам</a></li>
+                        <li><a href="accessories.html">Аксессуары</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="about.html">О нас</a></li>
+                
+                        <li><a href="delivery.html">Доставка и оплата</a></li>
+                        <li><a href="return.html">Возврат и обмен</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                  
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                
+                     
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <p>г. Минск, ул. Петруся Бровки 12</p>
+                    <p>+375 44 568 3271</p>
+                    <p>info@identity.ru</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 アイデンティティ. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Добавление в избранное
+        document.querySelectorAll('.wishlist').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                
+                if (this.classList.contains('active')) {
+                    alert('Товар добавлен в избранное');
+                } else {
+                    alert('Товар удален из избранного');
+                }
+            });
+        });
+        
+        // Добавление в корзину
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Товар добавлен в корзину');
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

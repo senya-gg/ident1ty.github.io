@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アイデンティティ - индивидульная одежда</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            transition: opacity 0.3s ease;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        /* Шапка и навигация */
+        header {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #000000;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #838cdd;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Заголовок каталога */
+        .catalog-header {
+            background: #f8f9fa;
+            padding: 40px 0;
+            text-align: center;
+            background-image: linear-gradient(to right, #f8f9fa, #e9ecef, #f8f9fa);
+        }
+
+        .catalog-header h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .breadcrumbs a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumbs a:hover {
+            color: #838cdd;
+            text-decoration: underline;
+        }
+
+        /* Основное содержимое каталога */
+        .catalog-content {
+            padding: 50px 0;
+            min-height: 70vh;
+        }
+
+        /* Боковая панель фильтров */
+        .filter-sidebar {
+            width: 250px;
+            float: left;
+            padding-right: 30px;
+            animation: fadeInLeft 0.5s ease;
+        }
+
+        .filter-section {
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .filter-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            color: #444;
+        }
+
+        .filter-options label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .filter-options label:hover {
+            color: #838cdd;
+        }
+
+        .filter-options input {
+            margin-right: 10px;
+        }
+
+        /* Фильтр по цене */
+        .price-filter {
+            margin-top: 15px;
+        }
+
+        .price-range-container {
+            position: relative;
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .price-range-track {
+            position: absolute;
+            height: 100%;
+            background: #838cdd;
+            border-radius: 5px;
+        }
+
+        .price-range-thumb {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border: 2px solid #838cdd;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .price-inputs {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .price-inputs input {
+            width: 45%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Сетка товаров */
+        .products-grid {
+            margin-left: 280px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Опции сортировки */
+        .sort-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .sort-by {
+            display: flex;
+            align-items: center;
+        }
+
+        .sort-by span {
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .sort-by select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .sort-by select:hover {
+            border-color: #838cdd;
+        }
+
+        .view-options button {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .view-options button:hover {
+            border-color: #838cdd;
+            color: #838cdd;
+        }
+
+        .view-options button.active {
+            background: #838cdd;
+            color: white;
+            border-color: #838cdd;
+        }
+
+        /* Карточки товаров */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-img {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #838cdd;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .product-badge.sale {
+            background: #ff6b6b;
+        }
+
+        .product-badge.hot {
+            background: #ffa502;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .product-price {
+            color: #000000;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-price .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .add-to-cart {
+            background: #838cdd;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .add-to-cart:hover {
+            background: #727bc7;
+            transform: translateY(-2px);
+        }
+
+        .wishlist {
+            background: none;
+            border: 1px solid #ddd;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #ccc;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wishlist:hover {
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        .wishlist.active {
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .pagination a, .pagination span {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .pagination a:hover {
+            background: #f8f9fa;
+            border-color: #838cdd;
+            color: #838cdd;
+        }
+
+        .pagination .active {
+            background: #838cdd;
+            color: white;
+            border-color: #838cdd;
+        }
+
+        .pagination .disabled {
+            color: #ccc;
+            pointer-events: none;
+        }
+
+        /* Подвал */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+            clear: both;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-column a:hover {
+            color: #838cdd;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #838cdd;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Выбор языка */
+        .language-selector {
+            margin-left: 20px;
+        }
+
+        .language-selector select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from { 
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .filter-sidebar {
+                width: 100%;
+                float: none;
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .products-grid {
+                margin-left: 0;
+            }
+            
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sort-options {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .view-options {
+                margin-top: 15px;
+            }
+            
+            .nav-links {
+                display: none; /* Мобильное меню */
+            }
+        }
+
+        /* Стили для загрузчика */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader.active {
+            display: flex;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #838cdd;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">アイデンティティ</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html" class="active">Каталог</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li class="language-selector">
+                        <select onchange="location = this.value;">
+                            <option value="index.html">Русский</option>
+                            <option value="en/index.html">English</option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="catalog-header">
+        <div class="container">
+            <h1>Каталог товаров</h1>
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> / <span>Каталог</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="catalog-content">
+        <div class="container">
+            <div class="filter-sidebar">
+                <div class="filter-section">
+                    <h3>Категории</h3>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="category" value="all" checked> Все товары</label>
+                        <label><input type="checkbox" name="category" value="women"> Женская одежда</label>
+                        <label><input type="checkbox" name="category" value="men"> Мужская одежда</label>
+                        <label><input type="checkbox" name="category" value="unisex"> Унисекс</label>
+                        <label><input type="checkbox" name="category" value="new">  </label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Цена, BYN</h3>
+                    <div class="price-filter">
+                        <div class="price-range-container">
+                            <div class="price-range-track" id="price-track"></div>
+                            <div class="price-range-thumb" id="price-thumb-min"></div>
+                            <div class="price-range-thumb" id="price-thumb-max"></div>
+                        </div>
+                        <div class="price-inputs">
+                            <input type="number" id="price-min" placeholder="От" value="0" min="0" max="1000">
+                            <input type="number" id="price-max" placeholder="До" value="500" min="0" max="1000">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Размер</h3>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="size" value="XS"> XS</label>
+                        <label><input type="checkbox" name="size" value="S"> S</label>
+                        <label><input type="checkbox" name="size" value="M" checked> M</label>
+                        <label><input type="checkbox" name="size" value="L" checked> L</label>
+                        <label><input type="checkbox" name="size" value="XL"> XL</label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Статус</h3>
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="status" value="new">  </label>
+                        <label><input type="checkbox" name="status" value="sale"> Распродажа</label>
+                        <label><input type="checkbox" name="status" value="hot"> Хиты</label>
+                    </div>
+                </div>
+                
+                <button class="btn" id="apply-filters" style="width: 100%; padding: 10px; background: #838cdd; color: white; border: none; border-radius: 4px;">Применить фильтры</button>
+                <button class="btn" id="reset-filters" style="width: 100%; padding: 10px; margin-top: 10px; background: #f8f9fa; color: #333; border: 1px solid #ddd; border-radius: 4px;">Сбросить фильтры</button>
+            </div>
+            
+            <div class="products-grid">
+                <div class="sort-options">
+                    <div class="sort-by">
+                        <span>Сортировать по:</span>
+                        <select id="sort-by">
+                            <option value="popular">Популярности</option>
+                            <option value="price-asc">Цене (по возрастанию)</option>
+                            <option value="price-desc">Цене (по убыванию)</option>
+                            <option value="new"> </option>
+                            <option value="sale">Скидки</option>
+                        </select>
+                    </div>
+                    <div class="view-options">
+                        <button class="active view-grid">☰</button>
+                        <button class="view-list">☷</button>
+                    </div>
+                </div>
+                
+                <div class="products" id="products-container">
+                    <!-- Товары будут загружены через JavaScript -->
+                </div>
+                
+                <div class="pagination" id="pagination">
+                    <!-- Пагинация будет генерироваться через JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Магазин</h3>
+                    <ul>
+                        <li><a href="women.html">Женщинам</a></li>
+                        <li><a href="men.html">Мужчинам</a></li>
+                        <li><a href="accessories.html">Аксессуары</a></li>
+                       
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="blog.html"> </a></li>
+                        <li><a href="delivery.html">Доставка и оплата</a></li>
+                        <li><a href="return.html">Возврат и обмен</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                 
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <p>г. Минск, ул. Петруся Бровки 12</p>
+                    <p>+375 44 568 3271</p>
+                    <p>info@identity.ru</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 アイデンティティ. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Данные товаров (имитация базы данных)
+        const allProducts = [
+            {
+                id: 1,
+                title: "zip-худи /mezu",
+                price: 190,
+                oldPrice: null,
+                image: "zip.jpg",
+                category: "women",
+                sizes: ["S", "M", "L"],
+                status: ["new"],
+                badge: "new",
+                isNew: true,
+                isHot: false,
+                isSale: false,
+                popularity: 85
+            },
+            {
+                id: 2,
+                title: "Юбка /gozu v2",
+                price: 100,
+                oldPrice: null,
+                image: "skirt.jpg",
+                category: "women",
+                sizes: ["XS", "S", "M"],
+                status: ["hot"],
+                badge: "hot",
+                isNew: false,
+                isHot: true,
+                isSale: false,
+                popularity: 95
+            },
+            {
+                id: 3,
+                title: "T-shirt /mezu",
+                price: 110,
+                oldPrice: null,
+                image: "shirt.jpg",
+                category: "unisex",
+                sizes: ["M", "L", "XL"],
+                status: [],
+                badge: null,
+                isNew: false,
+                isHot: false,
+                isSale: false,
+                popularity: 75
+            },
+            {
+                id: 4,
+                title: "Брюки jiangshi",
+                price: 160,
+                oldPrice: 200,
+                image: "pants.jpg",
+                category: "men",
+                sizes: ["M", "L"],
+                status: ["sale"],
+                badge: "sale",
+                isNew: false,
+                isHot: false,
+                isSale: true,
+                popularity: 80
+            },
+            {
+                id: 5,
+                title: "Zip-худи ≈heaven≈",
+                price: 240,
+                oldPrice: null,
+                image: "ffdf8836-4db3-469d-b104-95a6bc182be4.jpg",
+                category: "unisex",
+                sizes: ["L", "XL"],
+                status: ["new"],
+                badge: null,
+                isNew: true,
+                isHot: false,
+                isSale: false,
+                popularity: 70
+            },
+            {
+                id: 6,
+                title: "Брюки ≈guardian≈",
+                price: 150,
+                oldPrice: null,
+                image: "b378ca5f-f08c-4819-b943-b85a95fe7d40.jpg",
+                category: "men",
+                sizes: ["S", "M", "L"],
+                status: ["new"],
+                badge: "new",
+                isNew: true,
+                isHot: false,
+                isSale: false,
+                popularity: 65
+            },
+            {
+                id: 7,
+                title: "Футболка Basic",
+                price: 80,
+                oldPrice: 100,
+                image: "shirt.jpg",
+                category: "unisex",
+                sizes: ["XS", "S", "M", "L", "XL"],
+                status: ["sale"],
+                badge: "sale",
+                isNew: false,
+                isHot: false,
+                isSale: true,
+                popularity: 90
+            },
+            {
+                id: 8,
+                title: "Джинсы Classic",
+                price: 180,
+                oldPrice: null,
+                image: "pants.jpg",
+                category: "men",
+                sizes: ["S", "M", "L"],
+                status: ["hot"],
+                badge: "hot",
+                isNew: false,
+                isHot: true,
+                isSale: false,
+                popularity: 88
+            },
+            {
+                id: 9,
+                title: "Платье Elegance",
+                price: 220,
+                oldPrice: null,
+                image: "skirt.jpg",
+                category: "women",
+                sizes: ["XS", "S", "M"],
+                status: ["new"],
+                badge: "new",
+                isNew: true,
+                isHot: false,
+                isSale: false,
+                popularity: 78
+            }
+        ];
+
+        // Настройки пагинации
+        const paginationSettings = {
+            itemsPerPage: 6,
+            currentPage: 1,
+            totalPages: 0
+        };
+
+        // Инициализация страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация фильтра по цене
+            initPriceFilter();
+            
+            // Загрузка и отображение товаров
+            loadProducts();
+            
+            // Обработчики событий
+            setupEventListeners();
+            
+            // Плавные переходы между страницами
+            setupPageTransitions();
+        });
+
+        // Загрузка и отображение товаров
+        function loadProducts() {
+            showLoader();
+            
+            // Имитация задержки загрузки
+            setTimeout(() => {
+                // Фильтрация и сортировка товаров
+                const filteredProducts = filterProducts(allProducts);
+                const sortedProducts = sortProducts(filteredProducts);
+                
+                // Обновление пагинации
+                updatePagination(sortedProducts.length);
+                
+                // Получение товаров для текущей страницы
+                const paginatedProducts = paginateProducts(sortedProducts);
+                
+                // Отображение товаров
+                renderProducts(paginatedProducts);
+                
+                hideLoader();
+            }, 500);
+        }
+
+        // Фильтрация товаров
+        function filterProducts(products) {
+            const minPrice = parseInt(document.getElementById('price-min').value);
+            const maxPrice = parseInt(document.getElementById('price-max').value);
+            
+            // Получаем выбранные категории
+            const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(el => el.value);
+            
+            // Получаем выбранные размеры
+            const selectedSizes = Array.from(document.querySelectorAll('input[name="size"]:checked')).map(el => el.value);
+            
+            // Получаем выбранные статусы
+            const selectedStatuses = Array.from(document.querySelectorAll('input[name="status"]:checked')).map(el => el.value);
+            
+            return products.filter(product => {
+                // Фильтр по цене
+                if (product.price < minPrice || product.price > maxPrice) {
+                    return false;
+                }
+                
+                // Фильтр по категории (если не выбрано "Все товары")
+                if (!selectedCategories.includes('all') && !selectedCategories.includes(product.category)) {
+                    return false;
+                }
+                
+                // Фильтр по размеру
+                if (selectedSizes.length > 0 && !selectedSizes.some(size => product.sizes.includes(size))) {
+                    return false;
+                }
+                
+                // Фильтр по статусу
+                if (selectedStatuses.length > 0 && !selectedStatuses.some(status => product.status.includes(status))) {
+                    return false;
+                }
+                
+                return true;
+            });
+        }
+
+        // Сортировка товаров
+        function sortProducts(products) {
+            const sortBy = document.getElementById('sort-by').value;
+            
+            switch(sortBy) {
+                case 'price-asc':
+                    return [...products].sort((a, b) => a.price - b.price);
+                case 'price-desc':
+                    return [...products].sort((a, b) => b.price - a.price);
+                case 'new':
+                    return [...products].filter(p => p.isNew).sort((a, b) => b.popularity - a.popularity);
+                case 'sale':
+                    return [...products].filter(p => p.isSale).sort((a, b) => b.popularity - a.popularity);
+                case 'popular':
+                default:
+                    return [...products].sort((a, b) => b.popularity - a.popularity);
+            }
+        }
+
+        // Пагинация товаров
+        function paginateProducts(products) {
+            const startIndex = (paginationSettings.currentPage - 1) * paginationSettings.itemsPerPage;
+            const endIndex = startIndex + paginationSettings.itemsPerPage;
+            return products.slice(startIndex, endIndex);
+        }
+
+        // Обновление пагинации
+        function updatePagination(totalItems) {
+            paginationSettings.totalPages = Math.ceil(totalItems / paginationSettings.itemsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            
+            let paginationHTML = '';
+            
+            // Кнопка "Назад"
+            if (paginationSettings.currentPage > 1) {
+                paginationHTML += `<a href="#" class="page-prev" data-page="${paginationSettings.currentPage - 1}">&laquo;</a>`;
+            } else {
+                paginationHTML += `<span class="page-prev disabled">&laquo;</span>`;
+            }
+            
+            // Номера страниц
+            for (let i = 1; i <= paginationSettings.totalPages; i++) {
+                if (i === paginationSettings.currentPage) {
+                    paginationHTML += `<span class="page-num active">${i}</span>`;
+                } else {
+                    paginationHTML += `<a href="#" class="page-num" data-page="${i}">${i}</a>`;
+                }
+            }
+            
+            // Кнопка "Вперед"
+            if (paginationSettings.currentPage < paginationSettings.totalPages) {
+                paginationHTML += `<a href="#" class="page-next" data-page="${paginationSettings.currentPage + 1}">&raquo;</a>`;
+            } else {
+                paginationHTML += `<span class="page-next disabled">&raquo;</span>`;
+            }
+            
+            paginationContainer.innerHTML = paginationHTML;
+            
+            // Добавляем обработчики событий для новых элементов пагинации
+            document.querySelectorAll('.page-num, .page-prev, .page-next').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (!this.classList.contains('disabled') && !this.classList.contains('active')) {
+                        paginationSettings.currentPage = parseInt(this.getAttribute('data-page'));
+                        loadProducts();
+                        
+                        // Прокрутка к началу списка товаров
+                        document.querySelector('.products-grid').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Рендер товаров
+        function renderProducts(productsToRender) {
+            const container = document.getElementById('products-container');
+            
+            if (productsToRender.length === 0) {
+                container.innerHTML = '<div class="no-products" style="grid-column: 1 / -1; text-align: center; padding: 50px; font-size: 18px;">Товары не найдены. Попробуйте изменить параметры фильтрации.</div>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            productsToRender.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                let badgeHtml = '';
+                if (product.badge === 'new') {
+                    badgeHtml = '<div class="product-badge">Новинка</div>';
+                } else if (product.badge === 'hot') {
+                    badgeHtml = '<div class="product-badge hot">Хит</div>';
+                } else if (product.badge === 'sale') {
+                    const discount = Math.round((1 - product.price / product.oldPrice) * 100);
+                    badgeHtml = `<div class="product-badge sale">-${discount}%</div>`;
+                }
+                
+                let oldPriceHtml = '';
+                if (product.oldPrice) {
+                    oldPriceHtml = `<span class="old-price">${product.oldPrice} byn</span>`;
+                }
+                
+                productCard.innerHTML = `
+                    <div class="product-img">
+                        <img src="${product.image}" alt="${product.title}" loading="lazy">
+                        ${badgeHtml}
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-price">${product.price} byn ${oldPriceHtml}</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">В корзину</button>
+                            <button class="wishlist">♥</button>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(productCard);
+            });
+        }
+
+        // Инициализация фильтра по цене
+        function initPriceFilter() {
+            const priceMin = document.getElementById('price-min');
+            const priceMax = document.getElementById('price-max');
+            const priceTrack = document.getElementById('price-track');
+            const thumbMin = document.getElementById('price-thumb-min');
+            const thumbMax = document.getElementById('price-thumb-max');
+            
+            let minVal = 0;
+            let maxVal = 500;
+            
+            // Обновление позиции ползунков и трека
+            function updateSlider() {
+                const minPercent = (minVal / 500) * 100;
+                const maxPercent = (maxVal / 500) * 100;
+                
+                thumbMin.style.left = `${minPercent}%`;
+                thumbMax.style.left = `${maxPercent}%`;
+                priceTrack.style.left = `${minPercent}%`;
+                priceTrack.style.width = `${maxPercent - minPercent}%`;
+                
+                priceMin.value = minVal;
+                priceMax.value = maxVal;
+            }
+            
+            // Обработчик для минимального ползунка
+            thumbMin.addEventListener('mousedown', function(e) {
+                document.addEventListener('mousemove', moveMinThumb);
+                document.addEventListener('mouseup', stopMove);
+                
+                function moveMinThumb(e) {
+                    const containerRect = priceTrack.parentElement.getBoundingClientRect();
+                    let newPos = (e.clientX - containerRect.left) / containerRect.width * 100;
+                    newPos = Math.max(0, Math.min(newPos, (maxVal / 500 * 100) - 1));
+                    minVal = Math.round(newPos / 100 * 500);
+                    updateSlider();
+                }
+                
+                function stopMove() {
+                    document.removeEventListener('mousemove', moveMinThumb);
+                    document.removeEventListener('mouseup', stopMove);
+                }
+            });
+            
+            // Обработчик для максимального ползунка
+            thumbMax.addEventListener('mousedown', function(e) {
+                document.addEventListener('mousemove', moveMaxThumb);
+                document.addEventListener('mouseup', stopMove);
+                
+                function moveMaxThumb(e) {
+                    const containerRect = priceTrack.parentElement.getBoundingClientRect();
+                    let newPos = (e.clientX - containerRect.left) / containerRect.width * 100;
+                    newPos = Math.min(100, Math.max(newPos, (minVal / 500 * 100) + 1));
+                    maxVal = Math.round(newPos / 100 * 500);
+                    updateSlider();
+                }
+                
+                function stopMove() {
+                    document.removeEventListener('mousemove', moveMaxThumb);
+                    document.removeEventListener('mouseup', stopMove);
+                }
+            });
+            
+            // Обработчики для полей ввода
+            priceMin.addEventListener('change', function() {
+                minVal = Math.min(parseInt(this.value), maxVal - 1);
+                updateSlider();
+            });
+            
+            priceMax.addEventListener('change', function() {
+                maxVal = Math.max(parseInt(this.value), minVal + 1);
+                updateSlider();
+            });
+            
+            updateSlider();
+        }
+
+        // Настройка обработчиков событий
+        function setupEventListeners() {
+            // Добавление в корзину
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart')) {
+                    e.preventDefault();
+                    alert('Товар добавлен в корзину');
+                }
+            });
+            
+            // Избранное
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('wishlist')) {
+                    e.preventDefault();
+                    e.target.classList.toggle('active');
+                }
+            });
+            
+            // Применение фильтров
+            document.getElementById('apply-filters').addEventListener('click', function() {
+                paginationSettings.currentPage = 1; // Сброс на первую страницу
+                loadProducts();
+            });
+            
+            // Сброс фильтров
+            document.getElementById('reset-filters').addEventListener('click', function() {
+                // Сброс ползунков цены
+                document.getElementById('price-min').value = 0;
+                document.getElementById('price-max').value = 500;
+                
+                // Сброс чекбоксов
+                document.querySelectorAll('.filter-options input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                // Отметить "Все товары"
+                document.querySelector('.filter-options input[name="category"][value="all"]').checked = true;
+                
+                // Отметить размеры M и L
+                document.querySelector('.filter-options input[name="size"][value="M"]').checked = true;
+                document.querySelector('.filter-options input[name="size"][value="L"]').checked = true;
+                
+                // Сброс сортировки
+                document.getElementById('sort-by').value = 'popular';
+                
+                // Сброс пагинации
+                paginationSettings.currentPage = 1;
+                
+                // Обновление слайдера
+                initPriceFilter();
+                
+                // Загрузка товаров
+                loadProducts();
+            });
+            
+            // Изменение сортировки
+            document.getElementById('sort-by').addEventListener('change', function() {
+                paginationSettings.currentPage = 1;
+                loadProducts();
+            });
+            
+            // Переключение вида
+            document.querySelector('.view-grid').addEventListener('click', function() {
+                document.querySelector('.view-grid').classList.add('active');
+                document.querySelector('.view-list').classList.remove('active');
+                document.getElementById('products-container').classList.remove('list-view');
+            });
+            
+            document.querySelector('.view-list').addEventListener('click', function() {
+                document.querySelector('.view-list').classList.add('active');
+                document.querySelector('.view-grid').classList.remove('active');
+                document.getElementById('products-container').classList.add('list-view');
+            });
+        }
+
+        // Плавные переходы между страницами
+        function setupPageTransitions() {
+            const links = document.querySelectorAll('a[href^="http"], a[href^="/"], a[href^="."], a:not([href^="#"])');
+            
+            links.forEach(link => {
+                if (link.href && !link.href.includes('#')) {
+                    link.addEventListener('click', function(e) {
+                        if (this.target === '_blank' || e.metaKey || e.ctrlKey) return;
+                        
+                        e.preventDefault();
+                        document.body.classList.add('fade-out');
+                        
+                        setTimeout(() => {
+                            window.location.href = this.href;
+                        }, 300);
+                    });
+                }
+            });
+        }
+
+        // Показать загрузчик
+        function showLoader() {
+            document.getElementById('loader').classList.add('active');
+        }
+
+        // Скрыть загрузчик
+        function hideLoader() {
+            document.getElementById('loader').classList.remove('active');
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - アイデンティティ</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Шапка */
+        header {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #000000;
+        }
+
+        /* Герой-секция */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('about-bg.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* О компании */
+        .about-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Наша команда */
+        .team-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .member-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .member-position {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Наши ценности */
+        .values-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            background: #838cdd;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #838cdd;
+        }
+
+        .value-card:hover .value-icon {
+            color: white;
+        }
+
+        .value-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Подвал */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #838cdd;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 20px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">アイデンティティ</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="about.html" class="active">О нас</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1>Наша история</h1>
+            <p>Уникальная одежда для тех, кто ценит индивидуальность</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">О бренде</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>アイデンティティ (Identity) - это бренд одежды, созданный в 2020 году с целью предложить миру нечто большее, чем просто вещи. Мы верим, что одежда - это способ самовыражения, отражение внутреннего мира человека.</p>
+                    <p>Наш бренд родился из желания создать одежду, которая будет не просто модной, но и расскажет историю своего владельца. Каждая коллекция - это тщательно продуманный нарратив, где каждая деталь имеет значение.</p>
+                    <p>Мы используем только качественные материалы и работаем с лучшими производителями, чтобы гарантировать долговечность наших изделий. Наша философия - "меньше, но лучше".</p>
+                </div>
+                <div class="about-image">
+                    <img src="7413ca20-f3e8-4e07-a55b-c0896eaa575e.jpg" alt="О бренде Identity">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="128dc914-e82f-4226-8b9d-2e982d14d0e1.jpg" alt="Создатель">
+                    </div>
+                    <div class="member-info">
+                        <div class="member-name">Шмуль Ксения</div>
+                        <div class="member-position">Создатель</div>
+                    </div>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">Наши ценности</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">✏️</div>
+                    <div class="value-title">Индивидуальность</div>
+                    <p>Мы создаем одежду для тех, кто ценит уникальность и не боится выделяться</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <div class="value-title">Устойчивость</div>
+                    <p>Используем экологичные материалы и ответственно подходим к производству</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🧵</div>
+                    <div class="value-title">Качество</div>
+                    <p>Каждое изделие проходит строгий контроль качества перед отправкой</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <div class="value-title">Страсть</div>
+                    <p>Мы искренне любим то, что делаем, и это видно в каждой детали</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Магазин</h3>
+                    <ul>
+                        <li><a href="women.html">Женщинам</a></li>
+                        <li><a href="men.html">Мужчинам</a></li>
+                        <li><a href="accessories.html">Аксессуары</a></li>
+                     
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="about.html">О нас</a></li>
+
+                        <li><a href="delivery.html">Доставка и оплата</a></li>
+                        <li><a href="return.html">Возврат и обмен</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+             
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <p>г. Минск, ул. Петруся Бровки 12</p>
+                    <p>+375 44 568 3271</p>
+                    <p>info@identity.ru</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 アイデンティティ. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аксессуары - アイデンティティ</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Шапка */
+        header {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #000000;
+        }
+
+        /* Хлебные крошки */
+        .breadcrumbs {
+            padding: 15px 0;
+            font-size: 14px;
+        }
+
+        .breadcrumbs a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumbs a:hover {
+            color: #838cdd;
+        }
+
+        /* Основное содержимое */
+        .coming-soon {
+            text-align: center;
+            padding: 100px 0;
+            background: white;
+            border-radius: 10px;
+            margin: 50px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .coming-soon-icon {
+            font-size: 80px;
+            color: #838cdd;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        .coming-soon h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .coming-soon p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .notify-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .notify-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .notify-btn {
+            background: #838cdd;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .notify-btn:hover {
+            background: #727bc7;
+            transform: translateY(-2px);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Подвал */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #838cdd;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 20px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .coming-soon h1 {
+                font-size: 32px;
+            }
+            
+            .coming-soon-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">アイデンティティ</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="women.html">Женщинам</a></li>
+                    <li><a href="men.html">Мужчинам</a></li>
+                    <li><a href="accessories.html" class="active">Аксессуары</a></li>
+                
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> / <span>Аксессуары</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="coming-soon">
+            <div class="coming-soon-icon">⌛</div>
+            <h1>Аксессуары скоро в продаже!</h1>
+            <p>Мы готовим для вас уникальную коллекцию аксессуаров, которые дополнят ваш образ и подчеркнут индивидуальность. Оставьте свой email, и мы сообщим вам о поступлении товаров первыми.</p>
+            
+            <form class="notify-form">
+                <input type="email" class="notify-input" placeholder="Ваш email" required>
+                <button type="submit" class="notify-btn">Уведомить меня</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Магазин</h3>
+                    <ul>
+                        <li><a href="women.html">Женщинам</a></li>
+                        <li><a href="men.html">Мужчинам</a></li>
+                        <li><a href="accessories.html">Аксессуары</a></li>
+                
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="about.html">О нас</a></li>
+                  
+                        <li><a href="delivery.html">Доставка и оплата</a></li>
+                        <li><a href="return.html">Возврат и обмен</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                  
+                    <ul>
+                        
+                     
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <p>г. Минск, ул. Петруся Бровки 12</p>
+                    <p>+375 44 568 3271</p>
+                    <p>info@identity.ru</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 アイデンティティ. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка формы уведомления
+        document.querySelector('.notify-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            
+            // Здесь можно добавить отправку на сервер
+            alert('Спасибо! Мы сообщим вам, когда аксессуары появятся в продаже.');
+            this.querySelector('input').value = '';
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
